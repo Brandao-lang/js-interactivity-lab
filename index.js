@@ -25,17 +25,38 @@ function addMovie(event) {
 
 function deleteMovie(event) {
     event.target.parentNode.remove()
-    message.textContent = "Movie deleted"
+    // message.textContent = "Movie deleted"
+    const title = event.target.parentNode.querySelector('span').textContent
+    message.textContent = `${title} deleted!`
+    revealMessage()
 }
 
 function crossOffMovie(event) {
     event.target.classList.toggle('checked')
     if(event.target.classList.contains('checked')) {
-        message.textContent = "Movie watched"
+        message.textContent = `${event.target.textContent} watched!`
     } else {
-        message.textContent = "Movie added back"
+        message.textContent = `${event.target.textContent} added back!`
     }
+    revealMessage()
 }
+
+function callBack() {
+    const element = document.getElementById('message')
+    element.classList.add('hide')
+}
+
+
+
+function revealMessage() {
+    const element = document.getElementById('message')
+    element.classList.remove('hide')
+    setTimeout(callBack, 1000)
+}
+
+
+
+
 
 
 
